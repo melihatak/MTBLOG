@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MTBlog.Models.Kategori>
+<h5 class="card-header">Categories</h5>
+<div class="card-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled mb-0">
+                @foreach (var kategori in Model)
+                {
+                    <li>
+                        <a href="~/Home/KategoriMakale/@kategori.KategoriId">@kategori.KategoriAdi
+                        (@kategori.Makales.Count)</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+</div>

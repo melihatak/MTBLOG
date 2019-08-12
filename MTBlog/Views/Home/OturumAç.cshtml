@@ -1,0 +1,28 @@
+﻿@model MTBlog.ViewModel.UyeModel
+
+<h1 class="my-4">Oturum Aç</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("OturumAç", "Home",  new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.LabelFor(h => h.KullaniciAdi)
+            @Html.TextBoxFor(h => h.KullaniciAdi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.KullaniciAdi, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(h => h.Sifre)
+            @Html.PasswordFor(h => h.Sifre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.Sifre, null, new { @class = "text-danger" })
+            <br />
+            <input type="submit" value="Login" class="btn btn-success"  />
+            @Html.ActionLink("Üye Ol","ÜyeOl",null,new { @class="btn btn-primary"})
+        }
+        <br />
+
+        @if (ViewBag.HataMesajı != null)
+        {
+        <div class="alert alert-danger">@ViewBag.HataMesajı</div>
+        }
+
+    </div>
+</div>

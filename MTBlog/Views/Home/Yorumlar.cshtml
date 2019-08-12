@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MTBlog.Models.Yorum>
+
+@foreach (var yorum in Model)
+{
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="@yorum.Üye.Foto" alt="@yorum.Üye.KullaniciAdi">
+        <div class="media-body">
+            <h5 class="mt-0">@yorum.Üye.KullaniciAdi</h5>
+            @yorum.YorumIcerik
+        </div>
+    </div>
+}
+
+

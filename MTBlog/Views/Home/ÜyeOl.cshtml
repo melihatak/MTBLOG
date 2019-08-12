@@ -1,0 +1,62 @@
+﻿@model MTBlog.ViewModel.UyeModel
+
+<h1 class="my-4">Yeni Üye</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("ÜyeOl", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(h => h.AdSoyad)
+            @Html.TextBoxFor(h => h.AdSoyad, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.AdSoyad, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(h => h.Email)
+            @Html.TextBoxFor(h => h.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.Email, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(h => h.Sifre)
+            @Html.PasswordFor(h => h.Sifre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.Sifre, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(h => h.KullaniciAdi)
+            @Html.TextBoxFor(h => h.KullaniciAdi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.KullaniciAdi, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(h => h.Foto)
+            @Html.TextBoxFor(h => h.Foto, new { type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(h => h.Foto, null, new { @class = "text-danger" })
+            <br />
+
+            <input type="submit" value="Register" class="btn btn-success" />
+            @Html.ActionLink("Login", "OturumAç", null, new { @class = "btn btn-primary" })
+
+        }
+        <br />
+
+        @if (ViewBag.HataMesajı != null)
+        {
+            <div class="alert alert-danger">@ViewBag.HataMesajı</div>
+        }
+
+    </div>
+    <div class="col-md-6">
+        <img src="" class="img-thumbnail" id="üyefoto" />
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $("#Foto").change(function () {
+            readUrl(this);
+        });
+        function readUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#üyefoto").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

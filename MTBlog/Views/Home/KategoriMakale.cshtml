@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<MTBlog.Models.Makale>
+<h1 class="my-4"></h1>
+<h2>@ViewBag.Kategori</h2>
+@if (ViewBag.MakaleYok != null)
+{
+    <h5>@ViewBag.MakaleYok</h5>
+}
+<!-- Blog Post -->
+@foreach (var makale in Model)
+{
+    <div class="card mb-4">
+        <img class="card-img-top" src="~/Content/blogfoto/design.jpg" alt="@makale.Baslik">
+        <div class="card-body">
+            <h2 class="card-title text-justify">@makale.Baslik</h2>
+            @if (makale.Icerik.Length > 200)
+            {
+
+                <p>@Html.Raw(makale.Icerik.Substring(0, 200))...</p>
+            }
+            else
+            {
+                <p>@Html.Raw(makale.Icerik)</p>
+
+            }
+            <a href="~/Home/MakaleDetay/@makale.MakaleId" class="btn btn-primary">Read More &rarr;</a>
+            @*<a href="#" class="btn btn-primary">Read More &rarr;</a>*@
+        </div>
+        <div class="card-footer text-muted">
+            <b>Kategori:</b> @makale.Kategori.KategoriAdi|
+            <b>Yazar:</b> @makale.Üye.KullaniciAdi|
+            <b>Tarih:</b> @makale.Tarih|
+            @makale.Yorums.Count Yorum
+        </div>
+    </div>
+
+}
+
+
+
